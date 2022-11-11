@@ -1,0 +1,150 @@
+* Suma de tres Matrices dinámica
+
+
+*/
+
+#include<iostream>
+#include<math.h>
+#include<conio.h>
+#include<stdlib.h>      //new y delete
+#include <stdio.h>
+#include <ctime>
+#include <cstring>
+
+
+using namespace std; 
+void pedirDatos();
+void imprimirMatriz(int **,int, int);
+void imprimirMatriz2(int **,int, int);
+void imprimirMatriz3(int **,int, int);
+void imprimirMatrizResultado (int **,int,int);
+int **puntero_matriz, **puntero_matriz2, **puntero_matriz3, **matriz_resultado, nFilas,nCol;
+clock_t tiempo_req, tiempo_req2, tiempo_req3, tiempo_req4, tiempo_req5; 
+float tiempo_t, tiempo_t2, tiempo_t3, tiempo_t4, tiempo_t5, tiempo_t6;
+
+int main(){
+    pedirDatos();
+    imprimirMatriz(puntero_matriz,nFilas,nCol);
+    imprimirMatriz2(puntero_matriz2,nFilas,nCol);
+    imprimirMatriz3(puntero_matriz3,nFilas,nCol);
+    imprimirMatrizResultado(matriz_resultado,nFilas,nCol);
+    
+  
+getch();
+ return 0;   
+}
+ 
+void pedirDatos(){
+    cout<<"Digite el número de filas: "; 
+    cin>>nFilas; 
+    cout<<"Digite el número de columnas: ";
+    cin>>nCol;
+    
+    tiempo_req = clock();
+    
+//Reservando memoria para la matriz uno
+
+puntero_matriz = new int*[nFilas];  //Reservando memoria para las filas
+for(int i=0;i<nFilas;i++){
+    puntero_matriz[i] = new int[nCol]; //Reservando memoria para las columnas
+    
+}
+
+cout<<"\nDigite los elementos de la primera matriz:\n"; 
+    for(int i=0;i<nFilas;i++){
+        for(int j=0;j<nCol;j++){
+            cout<<"Digite un número ["<<i<<"]["<<j<<"]: ";
+            cin>>*(*(puntero_matriz+i)+j);  //puntero_matriz guardando i y j 
+    }
+  }
+  
+    
+
+//Reservando memoria para la matriz dos
+
+puntero_matriz2 = new int*[nFilas];  //Reservando memoria para las filas
+    for(int i=0;i<nFilas;i++){
+    puntero_matriz2[i] = new int[nCol]; //Reservando memoria para las columnas
+    
+}
+
+cout<<"\nDigite los elementos de la segunda matriz:\n"; 
+    for(int i=0;i<nFilas;i++){
+        for(int j=0;j<nCol;j++){
+            cout<<"Digite un número ["<<i<<"]["<<j<<"]: ";
+            cin>>*(*(puntero_matriz2+i)+j);  //puntero_matriz guardando i y j 
+    }
+    }
+
+//Reservando memoria para la matriz tres
+
+puntero_matriz3 = new int*[nFilas];  //Reservando memoria para las filas
+    for(int i=0;i<nFilas;i++){
+        puntero_matriz3[i] = new int[nCol]; //Reservando memoria para las columnas
+        
+}
+
+cout<<"\nDigite los elementos de la tercera matriz:\n"; 
+    for(int i=0;i<nFilas;i++){
+        for(int j=0;j<nCol;j++){
+            cout<<"Digite un número ["<<i<<"]["<<j<<"]: ";
+            cin>>*(*(puntero_matriz3+i)+j);  //puntero_matriz guardando i y j 
+    }
+    }
+    tiempo_t = float(tiempo_req)/CLOCKS_PER_SEC;
+    cout<< "Ingresaste las matrices durante"<<float(tiempo_req)/CLOCKS_PER_SEC<<" segundos. ";
+}
+
+
+void imprimirMatriz(int **puntero_matriz, int nFilas, int nCol){
+    cout<<"\nMatriz 1: \n";
+    tiempo_req = clock();
+    for(int i=0; i<nFilas;i++){
+        for(int j=0;j<nCol;j++){
+            cout<<*(*(puntero_matriz+i)+j)<<" "; //puntero_matriz
+}
+    cout<<"\n";
+}
+    tiempo_t2 = float(tiempo_req2)/CLOCKS_PER_SEC;
+}
+
+void imprimirMatriz2(int **puntero_matriz2, int nFilas, int nCol){
+
+    cout<<"\nMatriz 2: \n";
+    tiempo_req3 = clock();
+    for(int i=0; i<nFilas;i++){
+        for(int j=0;j<nCol;j++){
+            cout<<*(*(puntero_matriz2+i)+j)<<" "; //puntero_matriz
+}
+    cout<<"\n";
+}
+tiempo_t3 = float(tiempo_req3)/CLOCKS_PER_SEC;
+}
+void imprimirMatriz3(int **puntero_matriz3, int nFilas, int nCol){
+    cout<<"\nMatriz 3: \n";
+    tiempo_req4 = clock();
+    for(int i=0; i<nFilas;i++){
+        for(int j=0;j<nCol;j++){
+            cout<<*(*(puntero_matriz3+i)+j)<<" "; //puntero_matriz
+}
+    cout<<"\n";
+}
+    tiempo_t4 = float(tiempo_req4)/CLOCKS_PER_SEC;
+}
+
+void imprimirMatrizResultado(int **matriz_resultado,int nFilas, int nCol){
+    cout<<"\nLa suma de las 3 matrices es= \n";
+    tiempo_req5 = clock();
+    for(int i=0;i<nFilas;i++){
+        for(int j=0;j<nCol;j++){
+        cout<<puntero_matriz[i][j]  +  puntero_matriz2[i][j] + puntero_matriz3[i][j];
+        }
+        cout<<"\n";
+}
+
+    tiempo_t5 = float(tiempo_req5)/CLOCKS_PER_SEC;
+    tiempo_t6 = tiempo_t + tiempo_t2 + tiempo_t3 + tiempo_t4 + tiempo_t5;
+    cout<<"\nEl tiempo total de ejecución de las funciones en la aplicación fue de: "<<tiempo_t6 <<" segundos";
+}
+
+
